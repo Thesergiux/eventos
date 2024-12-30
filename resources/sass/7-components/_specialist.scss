@@ -1,0 +1,20 @@
+.specialist_container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.specialist__name {
+    text-align: center;
+    margin-bottom: 0;
+    font-weight: bold;
+}
+.specialist__speciality {
+    text-align: center;
+    font-size: 16px;
+    color:#FF4444;
+    margin-bottom: 20px;
+}
+.specialist__description{
+    margin-top: 50px;
+    margin-bottom: 50px !important;
+}
