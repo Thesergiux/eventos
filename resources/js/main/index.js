@@ -16,6 +16,8 @@ import ButtonSearch from './components/ButtonSearch.vue';
 import TruncatedText from './components/TruncatedText.vue';
 import TextExcept from './components/TextExcept.vue';
 
+import ProjectRegistrationForm from './components/forms/project-registration-form/ProjectRegistrationForm.vue';
+
 import Hero from './components/Hero.vue';
 
 import Tabs from './components/tabs/Tabs.vue';
@@ -28,8 +30,9 @@ import Tabs from './components/tabs/Tabs.vue';
     Vue.component('login-form', LoginForm);
     Vue.component('service-registration-form', ServiceRegistrationForm);
     Vue.component('status-project-form', StatusProjectForm);
+    Vue.component('project-registration-form', ProjectRegistrationForm);
 
-
+    
     /* App components
     ------------------------------------------------------------------------- */
     Vue.component('hero', Hero);
@@ -44,7 +47,6 @@ import Tabs from './components/tabs/Tabs.vue';
     Vue.component('filter-component', Filters);
     Vue.component('truncated-text', TruncatedText);
     Vue.component('except-text', TextExcept);
-
 
     Vue.component('tabs-component', Tabs);
 

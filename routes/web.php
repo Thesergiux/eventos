@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\LocationController;
-use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\ActivityController;
 use App\Http\Controllers\Admin\SpecialistController;
 use App\Http\Controllers\HomeController;
@@ -38,7 +38,9 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('especialistas', [HomeController::class, 'specialists']);
-Route::get('especialista/{slug}', [HomeController::class, 'specialist']);
+Route::get('evento/{id}', [HomeController::class, 'event']);
+Route::post('registrar-equipo/{id}', [HomeController::class, 'register']);
+
 Route::get('actividades/{id}', [HomeController::class, 'actividad']);
 
 
@@ -90,13 +92,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'noCache']], functio
     Route::put('roles/{id}/actualizar', [RoleController::class, 'update']);
     Route::delete('roles/eliminar/{id}', [RoleController::class, 'delete']);
 
-    //Posts
-    Route::get('posts', [PostController::class, 'index']);
-    Route::get('agregar-post', [PostController::class, 'create']);
-    Route::post('post/crear', [PostController::class, 'save']);
-    Route::get('post/{id}/editar', [PostController::class, 'edit']);
-    Route::put('post/{id}/actualizar', [PostController::class, 'update']);
-    Route::delete('post/eliminar/{id}', [PostController::class, 'delete']);
+
+
+    //Eventos
+    Route::get('eventos', [EventController::class, 'index']);
+    Route::view('agregar-evento', 'admin.eventos.crear');
+    Route::post('evento/crear', [EventController::class, 'save']);
+    Route::get('evento/{id}/editar', [EventController::class, 'edit']);
+    Route::put('evento/{id}/actualizar', [EventController::class, 'update']);
+    Route::delete('evento/eliminar/{id}', [EventController::class, 'delete']);
 
     //Actividades
     Route::get('actividades', [ActivityController::class, 'index']);

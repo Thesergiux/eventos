@@ -29,3 +29,14 @@ Dashboard main
     font-size: 12px;
 }
 
+
+/* Estilo del card wrapper */
+.card-wrapper {
+    background-color: #fff; /* Fondo blanco */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Sombra más intensa */
+    padding: 2rem; /* Espaciado interno */
+    margin: 0 auto; /* Centrado */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+

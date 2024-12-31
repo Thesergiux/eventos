@@ -1952,6 +1952,161 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/main/components/forms/project-registration-form/ProjectAuthorForm.vue?vue&type=script&lang=js":
+/*!************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/main/components/forms/project-registration-form/ProjectAuthorForm.vue?vue&type=script&lang=js ***!
+  \************************************************************************************************************************************************************************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _base_SelectField_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../base/SelectField.vue */ "./resources/js/main/components/forms/base/SelectField.vue");
+/* harmony import */ var _base_TextField_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../base/TextField.vue */ "./resources/js/main/components/forms/base/TextField.vue");
+/* harmony import */ var _base_FieldErrors_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../base/FieldErrors.vue */ "./resources/js/main/components/forms/base/FieldErrors.vue");
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    SelectField: _base_SelectField_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    FieldErrors: _base_FieldErrors_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    TextField: _base_TextField_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  props: {
+    participantData: {
+      type: Object,
+      required: true
+    },
+    index: {
+      type: Number,
+      required: true
+    },
+    errors: {
+      type: Object,
+      required: true
+    },
+    fields: {
+      type: Object,
+      required: true
+    },
+    minParticipants: {
+      required: true,
+      type: Number
+    },
+    assignedParticipants: {
+      required: true,
+      type: Array
+    }
+  },
+  data: function data() {
+    return {
+      noExistAlert: false
+    };
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/main/components/forms/project-registration-form/ProjectRegistrationForm.vue?vue&type=script&lang=js":
+/*!******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/main/components/forms/project-registration-form/ProjectRegistrationForm.vue?vue&type=script&lang=js ***!
+  \******************************************************************************************************************************************************************************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _base_BaseForm_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../base/BaseForm.vue */ "./resources/js/main/components/forms/base/BaseForm.vue");
+/* harmony import */ var _ProjectAuthorForm_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProjectAuthorForm.vue */ "./resources/js/main/components/forms/project-registration-form/ProjectAuthorForm.vue");
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  "extends": _base_BaseForm_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+  components: {
+    ProjectAuthorForm: _ProjectAuthorForm_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  props: {
+    participants: {
+      required: true,
+      type: Number
+    },
+    minParticipants: {
+      required: true,
+      type: Number
+    },
+    participantsData: {
+      required: true,
+      type: Object
+    },
+    assignedParticipants: {
+      required: true,
+      type: Array
+    }
+  },
+  data: function data() {
+    return {
+      firstTime: null,
+      fields: {
+        participant_count: this.minParticipants
+      }
+    };
+  },
+  mounted: function mounted() {
+    if (this.assignedParticipants.length != 0) {
+      this.fields.participant_count = this.assignedParticipants.length;
+    }
+  },
+  watch: {
+    firstTime: function firstTime(val) {
+      this.fields._method = val === false ? 'patch' : 'post';
+    }
+  },
+  methods: {
+    /**
+     * Copy all author's fields from one card to another.
+     *
+     * @param {Integer} source
+     * @param {Integer} target
+     */
+    copyAuthorFields: function copyAuthorFields(source, target) {
+      var regex = new RegExp('^participant' + source + '_');
+      this.deleteAuthorFields(target);
+      for (var field in this.fields) {
+        if (regex.test(field)) {
+          this.$set(this.fields, field.replace(source, target), this.fields[field]);
+        }
+      }
+    },
+    /**
+     * Delete all fields for the given author.
+     *
+     * @param {Integer} index
+     */
+    deleteAuthorFields: function deleteAuthorFields(index) {
+      var regex = new RegExp('^participant' + index + '_');
+      for (var field in this.fields) {
+        if (regex.test(field)) {
+          delete this.fields[field];
+        }
+      }
+    },
+    /**
+     * Copy all necessary author fields to move their index
+     * and then remove the last card.
+     *
+     * @param {Integer} index
+     */
+    removeParticipant: function removeParticipant(index) {
+      for (var i = 0; i < this.fields.participant_count - index; i++) {
+        this.copyAuthorFields(index + i + 1, index + i);
+      }
+      this.fields.participant_count--;
+      this.deleteAuthorFields(this.fields.participant_count + 1);
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/main/components/forms/service-registration-form/PaymentForm.vue?vue&type=script&lang=js":
 /*!******************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/main/components/forms/service-registration-form/PaymentForm.vue?vue&type=script&lang=js ***!
@@ -3745,6 +3900,259 @@ var render = function render() {
       }
     }
   });
+};
+var staticRenderFns = [];
+render._withStripped = true;
+
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/main/components/forms/project-registration-form/ProjectAuthorForm.vue?vue&type=template&id=0dd9e78c":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/main/components/forms/project-registration-form/ProjectAuthorForm.vue?vue&type=template&id=0dd9e78c ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: function() { return /* binding */ render; },
+/* harmony export */   staticRenderFns: function() { return /* binding */ staticRenderFns; }
+/* harmony export */ });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "box box--lg bg-white b-1 rounded relative"
+  }, [_c("h3", [_vm._v("\n        Participante " + _vm._s(_vm.index) + "\n    ")]), _vm._v(" "), _vm.index > _vm.minParticipants ? _c("button", {
+    staticClass: "btn btn--danger btn--xs rounded-0 absolute top-0 right-0",
+    attrs: {
+      type: "button"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.$emit("remove", _vm.index);
+      }
+    }
+  }, [_vm._v("\n        Eliminar\n    ")]) : _vm._e(), _vm._v(" "), _c("div", {
+    staticClass: "row mb-4"
+  }, [_c("div", {
+    staticClass: "md:col-1/2 sm:col"
+  }, [_c("div", {
+    staticClass: "form-control"
+  }, [_c("label", {
+    attrs: {
+      "for": "participant" + _vm.index + "-name"
+    }
+  }, [_vm._v("Nombre")]), _vm._v(" "), _c("text-field", {
+    attrs: {
+      name: "participant" + _vm.index + "_name",
+      initial: typeof _vm.assignedParticipants[_vm.index - 1] !== "undefined" ? _vm.assignedParticipants[_vm.index - 1].name : ""
+    },
+    model: {
+      value: _vm.fields["participant" + _vm.index + "_name"],
+      callback: function callback($$v) {
+        _vm.$set(_vm.fields, "participant" + _vm.index + "_name", $$v);
+      },
+      expression: "fields['participant' + index + '_name']"
+    }
+  }), _vm._v(" "), _c("field-errors", {
+    attrs: {
+      name: "participant" + _vm.index + "_name"
+    }
+  })], 1)]), _vm._v(" "), _c("div", {
+    staticClass: "md:col-1/2 sm:col"
+  }, [_c("div", {
+    staticClass: "form-control"
+  }, [_c("label", {
+    attrs: {
+      "for": "participant" + _vm.index + "-lastname"
+    }
+  }, [_vm._v("Apellidos")]), _vm._v(" "), _c("text-field", {
+    attrs: {
+      name: "participant" + _vm.index + "_lastname",
+      options: _vm.participantData,
+      initial: typeof _vm.assignedParticipants[_vm.index - 1] !== "undefined" ? _vm.assignedParticipants[_vm.index - 1].lastname : ""
+    },
+    model: {
+      value: _vm.fields["participant" + _vm.index + "_lastname"],
+      callback: function callback($$v) {
+        _vm.$set(_vm.fields, "participant" + _vm.index + "_lastname", $$v);
+      },
+      expression: "fields['participant' + index + '_lastname']"
+    }
+  }), _vm._v(" "), _c("field-errors", {
+    attrs: {
+      name: "participant" + _vm.index + "_lastname"
+    }
+  })], 1)])]), _vm._v(" "), _c("div", {
+    staticClass: "row mb-4"
+  }, [_c("div", {
+    staticClass: "md:col-1/2 sm:col"
+  }, [_c("div", {
+    staticClass: "form-control"
+  }, [_c("label", {
+    attrs: {
+      "for": "participant" + _vm.index + "-email"
+    }
+  }, [_vm._v("Correo electrónico")]), _vm._v(" "), _c("text-field", {
+    attrs: {
+      name: "participant" + _vm.index + "_email",
+      initial: typeof _vm.assignedParticipants[_vm.index - 1] !== "undefined" ? _vm.assignedParticipants[_vm.index - 1].email : ""
+    },
+    model: {
+      value: _vm.fields["participant" + _vm.index + "_email"],
+      callback: function callback($$v) {
+        _vm.$set(_vm.fields, "participant" + _vm.index + "_email", $$v);
+      },
+      expression: "fields['participant' + index + '_email']"
+    }
+  }), _vm._v(" "), _c("field-errors", {
+    attrs: {
+      name: "participant" + _vm.index + "_email"
+    }
+  })], 1)])])]);
+};
+var staticRenderFns = [];
+render._withStripped = true;
+
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/main/components/forms/project-registration-form/ProjectRegistrationForm.vue?vue&type=template&id=0d41ae0c":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/main/components/forms/project-registration-form/ProjectRegistrationForm.vue?vue&type=template&id=0d41ae0c ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: function() { return /* binding */ render; },
+/* harmony export */   staticRenderFns: function() { return /* binding */ staticRenderFns; }
+/* harmony export */ });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("form", [_c("div", {
+    staticClass: "md:row mb-4"
+  }, [_c("div", {
+    staticClass: "col"
+  }, [_c("div", {
+    staticClass: "form-control"
+  }, [_c("label", {
+    attrs: {
+      "for": "team"
+    }
+  }, [_vm._v("Equipo")]), _vm._v(" "), _c("text-field", {
+    attrs: {
+      name: "team",
+      initial: ""
+    },
+    model: {
+      value: _vm.fields.team,
+      callback: function callback($$v) {
+        _vm.$set(_vm.fields, "team", $$v);
+      },
+      expression: "fields.team"
+    }
+  }), _vm._v(" "), _c("field-errors", {
+    attrs: {
+      name: "team"
+    }
+  })], 1)])]), _vm._v(" "), _c("div", {
+    staticClass: "md:row mb-4"
+  }, [_c("div", {
+    staticClass: "col"
+  }, [_c("div", {
+    staticClass: "form-control"
+  }, [_c("label", {
+    attrs: {
+      "for": "project"
+    }
+  }, [_vm._v("Proyecto")]), _vm._v(" "), _c("text-field", {
+    attrs: {
+      name: "project",
+      initial: ""
+    },
+    model: {
+      value: _vm.fields.project,
+      callback: function callback($$v) {
+        _vm.$set(_vm.fields, "project", $$v);
+      },
+      expression: "fields.project"
+    }
+  }), _vm._v(" "), _c("field-errors", {
+    attrs: {
+      name: "project"
+    }
+  })], 1)])]), _vm._v(" "), _c("div", {
+    staticClass: "md:row mb-4"
+  }, [_c("div", {
+    staticClass: "col"
+  }, [_c("div", {
+    staticClass: "form-control"
+  }, [_c("label", {
+    attrs: {
+      "for": "description"
+    }
+  }, [_vm._v("Descripción del proyecto")]), _vm._v(" "), _c("text-field", {
+    attrs: {
+      name: "description",
+      initial: ""
+    },
+    model: {
+      value: _vm.fields.description,
+      callback: function callback($$v) {
+        _vm.$set(_vm.fields, "description", $$v);
+      },
+      expression: "fields.description"
+    }
+  }), _vm._v(" "), _c("field-errors", {
+    attrs: {
+      name: "description"
+    }
+  })], 1)])]), _vm._v(" "), _c("div", [_vm._l(_vm.fields.participant_count, function (i) {
+    return _c("ProjectAuthorForm", {
+      key: i,
+      attrs: {
+        index: i,
+        "min-participants": _vm.minParticipants,
+        "participants-data": _vm.participantsData,
+        "assigned-participants": _vm.assignedParticipants,
+        errors: _vm.errors,
+        fields: _vm.fields
+      },
+      on: {
+        remove: _vm.removeParticipant
+      }
+    });
+  }), _vm._v(" "), _c("p", {
+    staticClass: "pt-4"
+  }, [_vm.fields.participant_count < _vm.participants ? _c("button", {
+    staticClass: "btn btn--light mr-4",
+    attrs: {
+      type: "button"
+    },
+    on: {
+      click: function click($event) {
+        _vm.fields.participant_count++;
+      }
+    }
+  }, [_c("img", {
+    staticClass: "mr-1 align-top",
+    attrs: {
+      src: _vm.$root.path + "/img/icons/plus-circle-primary.svg",
+      alt: "",
+      width: "20px"
+    }
+  }), _vm._v(" "), _c("span", {
+    staticClass: "align-top"
+  }, [_vm._v("Agregar participante")])]) : _vm._e(), _vm._v(" "), _vm.participants > 1 ? _c("span", [_vm._v(" Puedes registrar a un máximo de " + _vm._s(_vm.participants) + " participantes.")]) : _c("span", [_vm._v(" Puedes registrar únicamente un participante.")])])], 2), _vm._v(" "), _c("div", {
+    staticClass: "text-center pt-8"
+  }, [_c("form-button", {
+    staticClass: "btn--primary btn--wide"
+  }, [_vm._v("\n             Enviar\n         ")])], 1)]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -15062,6 +15470,78 @@ component.options.__file = "resources/js/main/components/forms/base/TextField.vu
 
 /***/ }),
 
+/***/ "./resources/js/main/components/forms/project-registration-form/ProjectAuthorForm.vue":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/main/components/forms/project-registration-form/ProjectAuthorForm.vue ***!
+  \********************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ProjectAuthorForm_vue_vue_type_template_id_0dd9e78c__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProjectAuthorForm.vue?vue&type=template&id=0dd9e78c */ "./resources/js/main/components/forms/project-registration-form/ProjectAuthorForm.vue?vue&type=template&id=0dd9e78c");
+/* harmony import */ var _ProjectAuthorForm_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProjectAuthorForm.vue?vue&type=script&lang=js */ "./resources/js/main/components/forms/project-registration-form/ProjectAuthorForm.vue?vue&type=script&lang=js");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ProjectAuthorForm_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ProjectAuthorForm_vue_vue_type_template_id_0dd9e78c__WEBPACK_IMPORTED_MODULE_0__.render,
+  _ProjectAuthorForm_vue_vue_type_template_id_0dd9e78c__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/main/components/forms/project-registration-form/ProjectAuthorForm.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/main/components/forms/project-registration-form/ProjectRegistrationForm.vue":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/main/components/forms/project-registration-form/ProjectRegistrationForm.vue ***!
+  \**************************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ProjectRegistrationForm_vue_vue_type_template_id_0d41ae0c__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProjectRegistrationForm.vue?vue&type=template&id=0d41ae0c */ "./resources/js/main/components/forms/project-registration-form/ProjectRegistrationForm.vue?vue&type=template&id=0d41ae0c");
+/* harmony import */ var _ProjectRegistrationForm_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProjectRegistrationForm.vue?vue&type=script&lang=js */ "./resources/js/main/components/forms/project-registration-form/ProjectRegistrationForm.vue?vue&type=script&lang=js");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ProjectRegistrationForm_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ProjectRegistrationForm_vue_vue_type_template_id_0d41ae0c__WEBPACK_IMPORTED_MODULE_0__.render,
+  _ProjectRegistrationForm_vue_vue_type_template_id_0d41ae0c__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/main/components/forms/project-registration-form/ProjectRegistrationForm.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/main/components/forms/service-registration-form/PaymentForm.vue":
 /*!**************************************************************************************!*\
   !*** ./resources/js/main/components/forms/service-registration-form/PaymentForm.vue ***!
@@ -15698,6 +16178,32 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/main/components/forms/project-registration-form/ProjectAuthorForm.vue?vue&type=script&lang=js":
+/*!********************************************************************************************************************!*\
+  !*** ./resources/js/main/components/forms/project-registration-form/ProjectAuthorForm.vue?vue&type=script&lang=js ***!
+  \********************************************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectAuthorForm_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ProjectAuthorForm.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/main/components/forms/project-registration-form/ProjectAuthorForm.vue?vue&type=script&lang=js");
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectAuthorForm_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/main/components/forms/project-registration-form/ProjectRegistrationForm.vue?vue&type=script&lang=js":
+/*!**************************************************************************************************************************!*\
+  !*** ./resources/js/main/components/forms/project-registration-form/ProjectRegistrationForm.vue?vue&type=script&lang=js ***!
+  \**************************************************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectRegistrationForm_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ProjectRegistrationForm.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/main/components/forms/project-registration-form/ProjectRegistrationForm.vue?vue&type=script&lang=js");
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectRegistrationForm_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/main/components/forms/service-registration-form/PaymentForm.vue?vue&type=script&lang=js":
 /*!**************************************************************************************************************!*\
   !*** ./resources/js/main/components/forms/service-registration-form/PaymentForm.vue?vue&type=script&lang=js ***!
@@ -16168,6 +16674,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   staticRenderFns: function() { return /* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TextField_vue_vue_type_template_id_a3afe560__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns; }
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TextField_vue_vue_type_template_id_a3afe560__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TextField.vue?vue&type=template&id=a3afe560 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/main/components/forms/base/TextField.vue?vue&type=template&id=a3afe560");
+
+
+/***/ }),
+
+/***/ "./resources/js/main/components/forms/project-registration-form/ProjectAuthorForm.vue?vue&type=template&id=0dd9e78c":
+/*!**************************************************************************************************************************!*\
+  !*** ./resources/js/main/components/forms/project-registration-form/ProjectAuthorForm.vue?vue&type=template&id=0dd9e78c ***!
+  \**************************************************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: function() { return /* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectAuthorForm_vue_vue_type_template_id_0dd9e78c__WEBPACK_IMPORTED_MODULE_0__.render; },
+/* harmony export */   staticRenderFns: function() { return /* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectAuthorForm_vue_vue_type_template_id_0dd9e78c__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns; }
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectAuthorForm_vue_vue_type_template_id_0dd9e78c__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ProjectAuthorForm.vue?vue&type=template&id=0dd9e78c */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/main/components/forms/project-registration-form/ProjectAuthorForm.vue?vue&type=template&id=0dd9e78c");
+
+
+/***/ }),
+
+/***/ "./resources/js/main/components/forms/project-registration-form/ProjectRegistrationForm.vue?vue&type=template&id=0d41ae0c":
+/*!********************************************************************************************************************************!*\
+  !*** ./resources/js/main/components/forms/project-registration-form/ProjectRegistrationForm.vue?vue&type=template&id=0d41ae0c ***!
+  \********************************************************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: function() { return /* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectRegistrationForm_vue_vue_type_template_id_0d41ae0c__WEBPACK_IMPORTED_MODULE_0__.render; },
+/* harmony export */   staticRenderFns: function() { return /* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectRegistrationForm_vue_vue_type_template_id_0d41ae0c__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns; }
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectRegistrationForm_vue_vue_type_template_id_0d41ae0c__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ProjectRegistrationForm.vue?vue&type=template&id=0d41ae0c */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/main/components/forms/project-registration-form/ProjectRegistrationForm.vue?vue&type=template&id=0d41ae0c");
 
 
 /***/ }),
@@ -42858,8 +43398,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_ButtonSearch_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/ButtonSearch.vue */ "./resources/js/main/components/ButtonSearch.vue");
 /* harmony import */ var _components_TruncatedText_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/TruncatedText.vue */ "./resources/js/main/components/TruncatedText.vue");
 /* harmony import */ var _components_TextExcept_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/TextExcept.vue */ "./resources/js/main/components/TextExcept.vue");
-/* harmony import */ var _components_Hero_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/Hero.vue */ "./resources/js/main/components/Hero.vue");
-/* harmony import */ var _components_tabs_Tabs_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/tabs/Tabs.vue */ "./resources/js/main/components/tabs/Tabs.vue");
+/* harmony import */ var _components_forms_project_registration_form_ProjectRegistrationForm_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/forms/project-registration-form/ProjectRegistrationForm.vue */ "./resources/js/main/components/forms/project-registration-form/ProjectRegistrationForm.vue");
+/* harmony import */ var _components_Hero_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/Hero.vue */ "./resources/js/main/components/Hero.vue");
+/* harmony import */ var _components_tabs_Tabs_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/tabs/Tabs.vue */ "./resources/js/main/components/tabs/Tabs.vue");
+
 
 
 
@@ -42887,10 +43429,11 @@ __webpack_require__.r(__webpack_exports__);
   Vue.component('login-form', _components_forms_LoginForm_vue__WEBPACK_IMPORTED_MODULE_3__["default"]);
   Vue.component('service-registration-form', _components_forms_service_registration_form_ServiceRegistrationForm_vue__WEBPACK_IMPORTED_MODULE_12__["default"]);
   Vue.component('status-project-form', _components_forms_status_project_form_StatusProjectForm_vue__WEBPACK_IMPORTED_MODULE_13__["default"]);
+  Vue.component('project-registration-form', _components_forms_project_registration_form_ProjectRegistrationForm_vue__WEBPACK_IMPORTED_MODULE_17__["default"]);
 
   /* App components
   ------------------------------------------------------------------------- */
-  Vue.component('hero', _components_Hero_vue__WEBPACK_IMPORTED_MODULE_17__["default"]);
+  Vue.component('hero', _components_Hero_vue__WEBPACK_IMPORTED_MODULE_18__["default"]);
   Vue.component('site-menu', _components_Menu_vue__WEBPACK_IMPORTED_MODULE_6__["default"]);
   Vue.component('site-header', _components_Header_vue__WEBPACK_IMPORTED_MODULE_4__["default"]);
   Vue.component('presentation', _components_introduction_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
@@ -42901,7 +43444,7 @@ __webpack_require__.r(__webpack_exports__);
   Vue.component('filter-component', _components_filter_Filters_vue__WEBPACK_IMPORTED_MODULE_7__["default"]);
   Vue.component('truncated-text', _components_TruncatedText_vue__WEBPACK_IMPORTED_MODULE_15__["default"]);
   Vue.component('except-text', _components_TextExcept_vue__WEBPACK_IMPORTED_MODULE_16__["default"]);
-  Vue.component('tabs-component', _components_tabs_Tabs_vue__WEBPACK_IMPORTED_MODULE_18__["default"]);
+  Vue.component('tabs-component', _components_tabs_Tabs_vue__WEBPACK_IMPORTED_MODULE_19__["default"]);
 
   /**
    * Vue instance

@@ -40,54 +40,40 @@
         <div class="container">
             <div class="row">
                 <h2 class="h3">
-                Actividades para un mejor tú
-                </h2>
-                <p>
-                Descubre actividades recreativas locales que eleven tu espíritu. 
-                Te conectamos con los mejores lugares para participar en deportes y pasatiempos que inspiran alegría.
-                </p>
+                    Eventos
+                </h2>               
             </div>
             <div class="row mt-4">
-                <div class="activities__grid">
-                    @foreach ($sports as $activity)
-                        <div class="activities__item">
-                            <img src="{{ $activity->cover }}" alt="{{ $activity->name }}">
-                            <div class="activities__overlay">
-                                <a class="activities__text" href="{{ url('actividades/'. $activity->id) }}">
-                                    {{ $activity->name }}
-                                </a>
-                                
+                <div class="events__grid">
+                    @foreach ($events as $event)
+                        <div class="events__item card">
+                            <div class="card__status-tab {{ $event->status == 'active' ? 'active' : 'inactive' }}">
+                                {{ $event->status == 'active' ? 'Activo' : 'Inactivo' }}
+                            </div>
+                            <img src="{{ $event->cover }}" alt="{{ $event->name }}" class="card__image">
+                            <div class="card__content">
+                                <div class="card__dates">
+                                    <p>
+                                        Inicio: 
+                                        <span>{{ $event->formated_start_date }}</span>
+                                    </p>
+                                    <p>
+                                        Cierre: 
+                                        <span>{{ $event->formated_finish_date }}</span>
+                                    </p>
+                                </div>
+                                <h3 class="card__title">
+                                    {{ $event->name }}
+                                </h3>
+                                <div class="card__description">
+                                    {!! $event->description !!}
+                                </div>
+                                <a href="{{ url('evento/'. $event->id) }}" class="btn btn--primary btn--sm card__link">Ver más</a>
                             </div>
                         </div>
                     @endforeach
                 </div>
-            </div>
-        </div>
-    </section>
-    <section class="section talleres section--border-top">
-        <div class="container">
-            <div class="row">
-                <h2 class="h3">
-                Talleres para el control del estrés y ansiedad
-                </h2>
-                <p>
-                Explora una variedad de talleres recreativos que puedes seguir desde la comodidad de tu hogar.
-                </p>
-            </div>
-            <div class="row mt-4">
-                <div class="activities__grid">
-                    @foreach ($workshops as $activity)
-                        <div class="activities__item">
-                            <img src="{{ $activity->cover }}" alt="{{ $activity->name }}">
-                            <div class="activities__overlay">
-                                <a class="activities__text" href="{{ url('actividades/'. $activity->id) }}">
-                                    {{ $activity->name }}
-                                </a>
-                                
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
+
             </div>
         </div>
     </section>

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*!
  * Sonata CSS Framework v0.1.2
  * https://github.com/alexcandelas/sonata
@@ -2522,64 +2523,201 @@ Success and warning background icons.
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23BF3535' stroke-width='2' stroke-miterlimit='10'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M8 8l8 8m0-8l-8 8'/%3E%3C/svg%3E");
 }
 
-.activities__grid {
+/* Estilo general */
+.events__grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  padding: 1rem;
 }
 
-@media (max-width: 768px) {
-  .activities__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.activities__item {
+.card {
   position: relative;
-  border-radius: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 0 !important;
   overflow: hidden;
-  height: 131px;
-  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.activities__item img {
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Imagen */
+.card__image {
   width: 100%;
-  height: auto;
-  display: block;
-  transition: transform 0.3s ease;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
-.activities__item .activities__overlay {
+/* Contenido */
+.card__content {
+  padding: 1rem;
+}
+
+.card__title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.card__dates {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background-color: #f9f9f9;
+  /* Fondo claro */
+  border-left: 4px solid #007bff;
+  /* Línea decorativa */
+  border-radius: 4px;
+}
+
+.card__dates span {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Descripción */
+.card__description {
+  font-size: 1rem;
+  line-height: 1.5;
+  background-color: #fdfdfd;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  border: 1px solid #e5e5e5;
+  color: #666;
+}
+
+/* Botón */
+.card__link {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  background-color: #007bff;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.card__link:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Pestaña de estado */
+.card__status-tab {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  padding: 0.5rem 1rem;
+  color: #fff;
+  font-weight: bold;
+  font-size: 0.85rem;
+  border-bottom-right-radius: 8px;
+}
+
+.card__status-tab.active {
+  background-color: #28a745;
+  /* Verde para activo */
+}
+
+.card__status-tab.inactive {
+  background-color: #dc3545;
+  /* Rojo para inactivo */
+}
+
+/***** Estilos para Detalle del Evento *****/
+.event-detail {
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #fff;
+  border-radius: 8px;
+  font-family: 'Arial', sans-serif;
+}
+
+.event-detail__status {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.event-detail__status.active {
+  background-color: #28a745;
+  /* Verde para Activo */
+}
+
+.event-detail__status.inactive {
+  background-color: #dc3545;
+  /* Rojo para Inactivo */
+}
+
+/***** Fechas de Inicio y Cierre *****/
+.event-detail__dates {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: #f5faff;
+  /* Fondo suave */
+  border: 2px solid #007bff;
+  /* Borde principal */
+  border-radius: 8px;
+}
+
+.event-detail__date {
+  display: flex;
   align-items: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  color: white;
-  padding: 20px;
-  text-align: center;
-  z-index: 10;
+  gap: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
 }
 
-.activities__item .activities__overlay .activities__text {
-  color: #fff;
-  font-size: 18px;
-  padding: 10px;
+.event-detail__date-label {
+  color: #007bff;
+  /* Azul principal */
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-right: 0.5rem;
 }
 
-.activities__item:hover img {
-  transform: scale(1.1);
+.event-detail__date-value {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #555;
 }
 
-.activities__item:hover .activities__overlay {
-  opacity: 1;
+/***** Íconos opcionales para las fechas *****/
+.event-detail__date::before {
+  content: "📅";
+  /* Ícono de calendario */
+  font-size: 1.5rem;
+  color: #007bff;
+}
+
+.event-detail__description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-left: 4px solid #007bff;
+  border-radius: 4px;
 }
 
 /*
@@ -4311,6 +4449,34 @@ Requires javascript for full functionality.
 
 .form-check {
   display: flex;
+}
+
+/***** Estilos para Mensaje de Formulario Cerrado *****/
+.form-closed {
+  padding: 2rem;
+  background-color: #f8d7da;
+  /* Fondo rojo claro */
+  color: #721c24;
+  /* Texto rojo oscuro */
+  border: 1px solid #f5c6cb;
+  /* Borde rojo claro */
+  border-radius: 8px;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  margin-top: 2rem;
+}
+
+.form-closed__title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #721c24;
+}
+
+.form-closed__message {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #721c24;
 }
 
 /*
@@ -7561,6 +7727,21 @@ Dashboard main
 
 .text_remember {
   font-size: 12px;
+}
+
+/* Estilo del card wrapper */
+.card-wrapper {
+  background-color: #fff;
+  /* Fondo blanco */
+  border-radius: 8px;
+  /* Bordes redondeados */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  /* Sombra más intensa */
+  padding: 2rem;
+  /* Espaciado interno */
+  margin: 0 auto;
+  /* Centrado */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .youtube-title {
