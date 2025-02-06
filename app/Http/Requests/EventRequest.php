@@ -19,6 +19,8 @@ class EventRequest extends FormRequest
         return [
             'name' => ['required', new NotUppercase, new NotLowercase, 'max:100'],
             'description' => ['required', new NotUppercase, new NotLowercase, 'max:4000'],
+            'start_date' => ['required'],
+            'finish_date' => ['required'],
         ];
     }
 }
