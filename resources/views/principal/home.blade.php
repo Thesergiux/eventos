@@ -23,11 +23,9 @@
         <div class="container">
             <div class="row">
                 <div class="md:col-1/2">
-                    <h2 class="h3">Apoyo para inscribirse en los eventos</h2>
+                    <h2 class="h3">Apoyo para administrar eventos</h2>
                     <p>
-                    Mantente Vivo ayuda a las personas que enfrentan ansiedad o pensamientos suicidas proporcionando actividades recreativas cercanas para ayudarlas a distraerse y mejorar su bienestar. 
-                    Actuamos como intermediarios, conectando a los usuarios con lugares para participar en deportes y otras actividades preferidas. 
-                    Además, ofrecemos información detallada y fotos de lugares recomendados, junto con rutas aproximadas basadas en su ubicación.
+                    Nuestra plataforma no solo facilita la gestión de eventos tecnológicos como hackatones, conferencias y ferias de innovación, sino que también permite la ponderación y evaluación de calificaciones para determinar ganadores y destacar el desempeño de los participantes. Los organizadores pueden crear y administrar eventos, gestionar inscripciones, enviar notificaciones y hacer un seguimiento en tiempo real desde un panel intuitivo. Además, ofrece herramientas avanzadas para el registro y evaluación de proyectos, integración con redes sociales y generación de reportes detallados. Con un enfoque en la eficiencia y la transparencia, nuestra plataforma garantiza una organización fluida y una evaluación justa en cada evento.
                     </p>
                 </div>
                 <div class="md:col-1/2">
