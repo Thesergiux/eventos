@@ -13,8 +13,8 @@
         hero-height="90vh"
         >
             <template slot="container">
-                <h1 class="hero-title">Mantente vivovivovovoov</h1>
-                <p class="hero-p">Tu salud mental es importante. Descubre cómo cuidarla con nuestras guías y recursos educativos.</p>
+                <h1 class="hero-title">Eventos</h1>
+                <p class="hero-p">Esta es una pagina sobre eventos de la Unipoli.</p>
                <!--  <a class="btn hero-button" href="">Aprende más</a>--> 
             </template>
         </hero>
@@ -23,7 +23,7 @@
         <div class="container">
             <div class="row">
                 <div class="md:col-1/2">
-                    <h2 class="h3">Apoyo para el bienestar mental</h2>
+                    <h2 class="h3">Apoyo para inscribirse en los eventos</h2>
                     <p>
                     Mantente Vivo ayuda a las personas que enfrentan ansiedad o pensamientos suicidas proporcionando actividades recreativas cercanas para ayudarlas a distraerse y mejorar su bienestar. 
                     Actuamos como intermediarios, conectando a los usuarios con lugares para participar en deportes y otras actividades preferidas. 
