@@ -13,7 +13,7 @@
         hero-height="90vh"
         >
             <template slot="container">
-                <h1 class="hero-title">Mantente vivo</h1>
+                <h1 class="hero-title">Mantente vivovivovovoov</h1>
                 <p class="hero-p">Tu salud mental es importante. Descubre cómo cuidarla con nuestras guías y recursos educativos.</p>
                <!--  <a class="btn hero-button" href="">Aprende más</a>--> 
             </template>
