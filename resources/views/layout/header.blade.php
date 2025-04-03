@@ -1,6 +1,6 @@
 
 <site-header
-    :logo="'{{ url('img/eventcode.png') }}'"
+    :logo="'{{ url('img/eventcode1.png') }}'"
     :uri="'{{ url('/') }}'"
     :breakpoint="760"
 >
@@ -10,9 +10,9 @@
             :breakpoint="760"
             :links="{
                 'Inicio': '{{ url('/') }}',
-                'Deportes': '{{ url('deportes') }}',
-                'Talleres': '{{ url('talleres') }}',
-                'Especialistas': '{{ url('especialistas') }}',
+                'Eventos': '{{ url('deportes') }}',
+                'Equipos': '{{ url('talleres') }}',
+                'Iniciar Sesion': '{{ url('especialistas') }}',
             }"
             active-link="{{ $activeLink }}"
             >

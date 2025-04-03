@@ -13,8 +13,8 @@
         hero-height="90vh"
         >
             <template slot="container">
-                <h1 class="hero-title">Eventos</h1>
-                <p class="hero-p">Esta es una pagina sobre eventos de la Unipoli.</p>
+                <h1 class="hero-title">Event-Code</h1>
+                <p class="hero-p"></p>
                <!--  <a class="btn hero-button" href="">Aprende más</a>--> 
             </template>
         </hero>
