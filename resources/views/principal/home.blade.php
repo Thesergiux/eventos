@@ -8,7 +8,7 @@
 @section('content')
     <section class="hero">
         <hero
-        background-image="{{ url('img/hero/hero.png') }}"
+        background-image="{{ url('img/img1.jpg') }}"
         :is-parallax-active="true"
         hero-height="90vh"
         >
@@ -29,7 +29,7 @@
                     </p>
                 </div>
                 <div class="md:col-1/2">
-                    <img class="subject-img" src="{{ url('img/deporte-landing.png') }}" alt="">
+                    <img class="subject-img" src="{{ url('img/img2.jpg') }}" alt="">
                 </div>
             </div>
         </div>

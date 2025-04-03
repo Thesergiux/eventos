@@ -5,7 +5,7 @@
                 <div class="footer__col-text col lg:col d-flex items-center justify-center">
                     <p class="footer_container-title">
                         <strong>
-                            ©2024 | Mantente Vivo
+                            ©2025 | Devpipipi  
                         </strong>
                     </p>
                 </div>
