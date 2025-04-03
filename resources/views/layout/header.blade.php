@@ -1,6 +1,6 @@
 
 <site-header
-    :logo="'{{ url('img/mantentevivo-logo.png') }}'"
+    :logo="'{{ url('img/eventcode.png') }}'"
     :uri="'{{ url('/') }}'"
     :breakpoint="760"
 >
