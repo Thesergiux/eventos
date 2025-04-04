@@ -1,8 +1,8 @@
-<?php
-// Conectar directamente a la base de datos
+<?php include 'header.blade.php'; 
+// Conectar a la base de datos
 $conn = new mysqli("localhost", "root", "", "eventos");
 
-// Verificar la conexión
+// Verificar conexión
 if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);
 }
@@ -24,10 +24,8 @@ while ($row = $result->fetch_assoc()) {
     $datos[] = $row;
 }
 
-// Calcular promedios y ponderación final por evento
+// Calcular promedios por evento
 $promedios_por_evento = [];
-$ponderacion_por_evento = [];
-
 foreach ($datos as $dato) {
     $evento = $dato['evento'];
     if (!isset($promedios_por_evento[$evento])) {
@@ -36,10 +34,10 @@ foreach ($datos as $dato) {
     $promedios_por_evento[$evento][] = $dato['calificacion'];
 }
 
-// Calcular promedios por evento y ponderación final
+// Calcular promedios finales por evento
+$ponderacion_por_evento = [];
 foreach ($promedios_por_evento as $evento => $califs) {
-    $promedios_por_evento[$evento] = array_sum($califs) / count($califs);
-    $ponderacion_por_evento[$evento] = number_format($promedios_por_evento[$evento], 2);
+    $ponderacion_por_evento[$evento] = number_format(array_sum($califs) / count($califs), 2);
 }
 ?>
 
@@ -51,16 +49,69 @@ foreach ($promedios_por_evento as $evento => $califs) {
     <title>Registro de Calificaciones</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        /* Estilo para la gráfica (tamaño reducido) */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 10px;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
         #grafica {
-            width: 50%; /* Ajusta el tamaño a la mitad */
-            height: 300px; /* Ajusta la altura de la gráfica */
-            margin: 0 auto;
+            width: 100%;
+            max-width: 400px;
+            margin: 20px auto;
         }
     </style>
 </head>
 <body>
 
+<div class="container">
     <h2>Registrar Calificación</h2>
     <form method="POST">
         <input type="text" name="evento" placeholder="Nombre del evento" required>
@@ -70,7 +121,7 @@ foreach ($promedios_por_evento as $evento => $califs) {
     </form>
 
     <h2>Calificaciones Registradas</h2>
-    <table border="1">
+    <table>
         <tr>
             <th>Evento</th>
             <th>Juez</th>
@@ -86,7 +137,7 @@ foreach ($promedios_por_evento as $evento => $califs) {
     </table>
 
     <h2>Ponderación Final por Evento</h2>
-    <table border="1">
+    <table>
         <tr>
             <th>Evento</th>
             <th>Ponderación Final</th>
@@ -99,41 +150,43 @@ foreach ($promedios_por_evento as $evento => $califs) {
         <?php } ?>
     </table>
 
-    <h2>Gráfica de Calificaciones</h2>
+    <h2>Gráfica de Promedios</h2>
     <canvas id="grafica"></canvas>
+</div>
 
-    <script>
-        const ctx = document.getElementById('grafica').getContext('2d');
-        const chartData = {
-            labels: <?= json_encode(array_keys($promedios_por_evento)) ?>,
-            datasets: [{
-                label: 'Promedio de Calificaciones por Evento',
-                data: <?= json_encode(array_values($promedios_por_evento)) ?>,
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.5)',
-                    'rgba(54, 162, 235, 0.5)',
-                    'rgba(255, 206, 86, 0.5)',
-                    'rgba(75, 192, 192, 0.5)',
-                    'rgba(153, 102, 255, 0.5)',
-                    'rgba(255, 159, 64, 0.5)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        };
+<script>
+    const ctx = document.getElementById('grafica').getContext('2d');
+    const chartData = {
+        labels: <?= json_encode(array_keys($ponderacion_por_evento)) ?>,
+        datasets: [{
+            label: 'Promedio de Calificaciones por Evento',
+            data: <?= json_encode(array_values($ponderacion_por_evento)) ?>,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.7)',
+                'rgba(54, 162, 235, 0.7)',
+                'rgba(255, 206, 86, 0.7)',
+                'rgba(75, 192, 192, 0.7)',
+                'rgba(153, 102, 255, 0.7)',
+                'rgba(255, 159, 64, 0.7)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    };
 
-        new Chart(ctx, {
-            type: 'pie', // Se cambia a pastel
-            data: chartData
-        });
-    </script>
+    new Chart(ctx, {
+        type: 'pie',
+        data: chartData
+    });
+</script>
 
 </body>
 </html>
+
