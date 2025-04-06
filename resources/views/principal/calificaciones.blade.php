@@ -1,4 +1,7 @@
-<?php include 'header.blade.php'; 
+
+<?php include '../layout/header.blade.php'; 
+
+
 // Conectar a la base de datos
 $conn = new mysqli("localhost", "root", "", "eventos");
 

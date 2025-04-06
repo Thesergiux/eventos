@@ -128,7 +128,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'noCache']], functio
 
 
 
-
+    //calificaciones 
+    Route::get('/calificaciones', function () {
+        return view('principal.calificaciones');
+    });
+    
 
 
 

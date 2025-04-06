@@ -11,8 +11,8 @@
             :links="{
                 'Inicio': '{{ url('/') }}',
                 'Eventos': '{{ url('deportes') }}',
-                'Equipos': '{{ url('talleres') }}',
-                'Iniciar Sesion': '{{ url('especialistas') }}',
+                'calificaciones': '{{ url('../resources/views/principal/calificaciones.blade.php') }}',
+                'Iniciar Sesion': '{{ url('login') }}',
             }"
             active-link="{{ $activeLink }}"
             >
