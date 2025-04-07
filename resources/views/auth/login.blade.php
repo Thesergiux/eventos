@@ -9,8 +9,8 @@
     
     <div class="container">
         <div class="login-form flex-col">
-            <img class="login-image" src="{{ url('img/mantentevivo.png') }}" alt="">
-            <p class="login-text">Mantente Vivo</p>
+            <img class="login-image" src="{{ url('img/eventcode1.png') }}" alt="">
+            <p class="login-text">Event-code</p>
             
             <form class="form-boxed" method="POST" action="{{ route('login') }}">
                 @csrf
