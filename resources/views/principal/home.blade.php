@@ -8,7 +8,7 @@
 @section('content')
     <section class="hero">
         <hero
-        background-image="{{ url('img/img4.jpeg') }}"
+        
         :is-parallax-active="true"
         hero-height="90vh"
         >

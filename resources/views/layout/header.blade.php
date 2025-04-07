@@ -21,7 +21,7 @@
                 </template>
             </site-menu>
             @guest
-                <a href="{{ url('iniciar-sesion') }}" class="btn btn--outline-primary btn-login-menu">
+                <a href="{{ url('Iniciar-sesion') }}" class="btn btn--outline-primary btn-login-menu">
                     <img class="img-user-login" src="{{ url('img/header/users.svg') }}">
                     Ingresar
                 </a>

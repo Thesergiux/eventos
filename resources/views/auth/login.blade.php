@@ -9,8 +9,8 @@
     
     <div class="container">
         <div class="login-form flex-col">
-            <img class="login-image" src="{{ url('img/eventcode1.png') }}" alt="">
-            <p class="login-text">Event-code</p>
+        <img class="login-image" src="{{ url('img/eventcode1.png') }}" alt="" style="width: 30%; height: auto;">
+      
             
             <form class="form-boxed" method="POST" action="{{ route('login') }}">
                 @csrf
@@ -52,10 +52,12 @@
                     </p>
                 </div>
                 <div class="text-center">
-                    <button type="submit" type="button" class="btn btn--brand w-full">
-                        {{ __('Login') }}
-                    </button>
+                <button type="submit" type="button" class="btn btn--brand w-full" style="background-color: #003366; border-color: #003366; color: white;">{{ __('Login') }}
+                </button>
                 </div>
+
+
+                
                 <!-- <div class="divider-form-login">
                     <span class="divider-form-login-span"> ó</span>
                 </div>
