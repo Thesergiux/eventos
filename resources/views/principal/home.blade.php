@@ -6,9 +6,9 @@
 @section('canonical', config('app.url'))
 @section('class', 'home')
 @section('content')
-    <section class="hero">
+<section class="hero">
         <hero
-        
+        background-image="{{ url('img/img4.jpeg') }}"
         :is-parallax-active="true"
         hero-height="90vh"
         >
@@ -25,7 +25,7 @@
                 <div class="md:col-1/2">
                     <h2 class="h3">Apoyo para administrar eventos</h2>
                     <p>
-                    Nuestra plataforma no solo facilita la gestión de eventos tecnológicos como hackatones, conferencias y ferias de innovación, sino que también permite la ponderación y evaluación de calificaciones para determinar ganadores y destacar el desempeño de los participantes. Los organizadores pueden crear y administrar eventos, gestionar inscripciones, enviar notificaciones y hacer un seguimiento en tiempo real desde un panel intuitivo. Además, ofrece herramientas avanzadas para el registro y evaluación de proyectos, integración con redes sociales y generación de reportes detallados. Con un enfoque en la eficiencia y la transparencia, nuestra plataforma garantiza una organización fluida y una evaluación justa en cada evento.
+                    Nuestra plataforma no solo facilita la gestión de eventos tecnológicos como hackatones, conferencias y ferias de innovación, sino que también permite la ponderación y evaluación de calificaciones para determinar ganadores y destacar el desempeño de los participantes. Los organizadores pueden crear y administrar eventos, gestionar inscripciones, enviar notificaciones y hacer un seguimiento en tiempo real desde un panel intuitivo. Además, ofrece herramientas avanzadas para el registro y evaluación de proyectos, integración con redes sociales y generación de reportes detallados. Con un enfoque en la eficiencia y la transparencia, nuestra plataforma garantiza una organización fluida y una evaluación justa en cada evento.
                     </p>
                 </div>
                 <div class="md:col-1/2">
